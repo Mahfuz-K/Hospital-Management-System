@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+     
+      <%= form_with model: [@patient, @invoice] do |form| %>
+        <!-- Form fields -->
+        <div class="form-group">
+          <%= form.label :amount %>:<br>
+          <%= form.text_field :amount, class: 'form-control' %>
+          <p class='error'><%= show_errors([@patient, @invoice], :name) %></p>
+          <br>
+        </div>
+          
+        <div>
+               <%= form.select :payment_type_id, options_for_select(PaymentType.all.collect{|payment_type| [payment_type.name,payment_type.id]}),  prompt: "Select a Payment type" %>
+        </div>
+         <br>
+         <%= form.submit(nil, class: "btn btn-success") %>
+     <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

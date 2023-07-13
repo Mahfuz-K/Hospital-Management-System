@@ -1,0 +1,55 @@
+
+<div class="container ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+    <div class="container-fluid">
+
+ 
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          
+         
+          <div class="card-footer text-muted">
+            <h1 class="text-center mt-4"><%= @prescription.description %></h1>
+            <small>Created <%= time_ago_in_words(@prescription.created_at) %> ago, 
+            </small>
+          </div>
+          <div class="buttons d-flex justify-content-md-center">
+          <div class="card text-dark m-5" style="max-width: 12rem;">
+              <%= link_to 'Back', patient_prescriptions_path, class: 'btn btn-info custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+             <%= link_to 'Edit', edit_patient_prescription_path, class: 'btn btn-warning custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+           
+            <%= button_to "Delete", patient_prescription_path(@patient,@prescription), method: :delete, class: "btn btn-danger custom-button" %>
+           
+   
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

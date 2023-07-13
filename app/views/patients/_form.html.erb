@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1>New Patient Registration</h1>
+      <%= form_with model: @patient do |form| %>
+        <!-- Form fields -->
+        <div class="form-group">
+          <%= form.label :name %>:<br>
+          <%= form.text_field :name, class: 'form-control' %>
+           <p class='error'><%= show_errors(@patient, :name) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :age %><br>
+          <%= form.text_field :age, class: 'form-control' %>
+           <p class='error'><%= show_errors(@patient, :age) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :sex %><br>
+          <%= form.select :sex, options_for_select(['Male', 'Female', 'Other']), { prompt: "Select a gender" }, class: 'form-control' %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :email %><br>
+          <%= form.text_field :email, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :email) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :phone_no %><br>
+          <%= form.text_field :phone_no, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :phone_no) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :date_of_birth %><br>
+          <%= form.date_field :date_of_birth, class: 'form-control' %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :voter_id %><br>
+          <%= form.file_field :voter_id, class: 'form-control-file' %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :emergency_contact_person_name %><br>
+          <%= form.text_field :emergency_contact_person_name, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :emergency_contact_person_name) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :emergency_contact_person_number %><br>
+          <%= form.text_field :emergency_contact_person_number, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :emergency_contact_person_number) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :emergency_contact_person_email_id %><br>
+          <%= form.text_field :emergency_contact_person_email_id, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :emergency_contact_person_email_id) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :bed_number %><br>
+          <%= form.text_field :bed_number, class: 'form-control' %><br>
+           <p class='error'><%= show_errors(@patient, :bed_number) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :address %><br>
+          <%= form.text_area :address, class: 'form-control' %><br>
+         <p class='error'><%= show_errors(@patient, :address) %></p>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :bed_type_id %><br>
+          <%= form.select :bed_type_id, options_for_select(BedType.all.collect { |bed_type| [bed_type.name, bed_type.id] }), { prompt: "Select a bed type" }, class: 'form-control' %>
+        </div>
+        <br>
+        <div class="form-group">
+          <h3>Emergency Admission</h3>
+          <div class="form-check">
+            <%= form.label :emergency_admission, class: 'form-check-label' do %>
+              <%= form.check_box :emergency_admission, { checked: @patient.emergency_admission }, class: 'form-check-input' %>
+              Yes
+            <% end %>
+          </div>
+        </div>
+        <br>
+       
+          <%= form.submit(nil, class: "btn btn-success") %>
+
+       
+      <% end %>
+    </div>
+  </div>
+</div>

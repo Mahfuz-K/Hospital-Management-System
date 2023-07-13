@@ -1,0 +1,33 @@
+<div class="container ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+
+
+<h1 class="text-center mt-4">Locked Users</h1>
+
+
+  <% @users.each do |user| if user.is_locked%>
+    <div class="row justify-content-md-center ">
+      <div class="col-8 mt-4" >
+       <div class="card text-center shadow mb-5 rounded ">
+          <div class="card-body custom-card">
+            <h5 class="card-title">Name: <%= link_to user.username, user %></h5>
+             <h5 class="card-title">Role: <%= user.role.name %></h5>
+             <%= button_to 'Unlock', unlock_user_path(user), method: :post, class: 'btn btn-success' %>
+            
+    </div>
+
+          <div class="card-footer text-muted ">
+            <small>created <%= time_ago_in_words(user.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+   
+  <% end %>
+  <%end%>
+</div>

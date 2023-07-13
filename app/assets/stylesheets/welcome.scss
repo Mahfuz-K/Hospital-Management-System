@@ -1,0 +1,26 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.form-container{
+    margin-top: 250px;
+    margin-left: 50px;
+}
+span{
+    color: red;
+    
+}
+.card-text{
+    padding-top: 80px;
+}
+h2{
+    padding-bottom: 50px
+}
+.container-fluid{
+  
+         padding: 20px;
+}

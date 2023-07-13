@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+     
+      <%= form_with model: [@patient, @prescription] do |form| %>
+        <!-- Form fields -->
+        <div class="form-group">
+          <%= form.label :description %>:<br>
+          <%= form.text_field :description, class: 'form-control' %>
+          <p class='error'><%= show_errors([@patient, @prescription], :description) %></p>
+          <br>
+        </div>
+         <%= form.submit(nil, class: "btn btn-success") %>
+     <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+
+<div class="container ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+<div class="container ">
+
+
+
+<h1 class="text-center mt-4">Payment Types</h1>
+
+<div class="create-payment_type-link "><%= button_to 'Create New Payment Type', new_payment_type_path,method: :get, class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    </div><br>
+
+  <% @payment_types.each_with_index do |payment_type,index| %>
+    <div class="row justify-content-md-center ">
+      <div class="col-8 mt-4" >
+       <div class="card text-center shadow mb-5 rounded ">
+          <div class="card-body custom-card">
+            <h5 class="card-title">    <%= link_to payment_type.name.upcase, payment_type %></h5>
+             
+    </div>
+
+          <div class="card-footer text-muted ">
+            <small>created <%= time_ago_in_words(payment_type.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+   
+  <% end %>
+</div>
+ </div>
+
+
+
+
+
+
+

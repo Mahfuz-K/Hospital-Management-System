@@ -1,0 +1,43 @@
+<div class="container ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<h1 class="text-center mt-4">Bed Types</h1>
+
+<div class="create-bed_type-link "><%= button_to 'Create New bed_type', new_bed_type_path,method: :get, class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    </div><br>
+
+  <% @bed_types.each_with_index do |bed_type,index| %>
+    <div class="row justify-content-md-center ">
+      <div class="col-8 mt-4" >
+       <div class="card text-center shadow mb-5 rounded ">
+          <div class="card-body custom-card">
+            <h5 class="card-title">    <%= link_to bed_type.name.upcase, bed_type %></h5>
+             
+    </div>
+
+          <div class="card-footer text-muted ">
+            <small>created <%= time_ago_in_words(bed_type.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+   
+  <% end %>
+</div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+

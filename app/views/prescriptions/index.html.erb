@@ -1,0 +1,54 @@
+<div class="container ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+<div class="container-fluid">
+   <h1>Prescription<h1>
+
+    <%= button_to 'Create New Prescription', new_patient_prescription_path, method: :get, class: 'btn text- btn-lg custom-button',style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    </div><br>
+    <div class="row justify-content-md-center">
+     <div class="col-6 mt-4 ">
+     <div class="card text-dark mb-3 " style="max-width: 38rem; background-color: skyblue;">
+  <% if @prescriptions.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Serial No</th>
+          <th scope="col">Prescriptions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @prescriptions.each_with_index do |prescription, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= link_to prescription.description, patient_prescription_path(@patient, prescription) %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="card-body">
+      <p>No prescriptions available.</p>
+    </div>
+  <% end %>
+  </div>
+  </div>
+</div>
+
+
+      
+   
+
+</div>
+
+
+
+
+
+
+

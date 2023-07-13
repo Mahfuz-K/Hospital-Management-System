@@ -1,0 +1,56 @@
+
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+    <div class="container-fluid">
+
+  
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          
+          
+          <div class="card-footer text-muted">
+           
+            <h1 class="text-center mt-4"><strong>Bed Type: </strong><%= @bed_type.name %></h1>
+             <p>We do have following  patients</p>
+              <%@bed_type.patients.each_with_index  do |patient,index| %>
+             
+             <h5> <strong> <%= index+1 %>.</strong> Name: <%=link_to patient.name ,patient_path(patient)%></h5>
+              <p>email: <%= patient.email%></p>
+    
+             <%end %>
+            <small>Created <%= time_ago_in_words(@bed_type.created_at) %> ago, 
+            </small>
+          </div>
+          <div class="buttons d-flex justify-content-md-center">
+          <div class="card text-dark m-5" style="max-width: 12rem;">
+              <%= link_to 'Back', bed_types_path, class: 'btn btn-info custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+             <%= link_to 'Edit', edit_bed_type_path, class: 'btn btn-warning custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+           
+            <%= button_to "Delete", bed_type_path(@bed_type), method: :delete, class: "btn btn-danger custom-button" %>
+           
+   
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+ 
+
+
+
+
+
+
+
+       

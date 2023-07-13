@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  phone_no: MyString
+  email: MyString
+  sex: MyString
+  DOB: 2023-06-20
+  emergency_contact_person_name: MyString
+  emergency_contact_person_number: MyString
+  emrgency_contact_person_email_id: MyString
+  patient_id: 1
+  bed_number: 1
+  emergency_admission: false
+  voter_id: MyString
+
+two:
+  name: MyString
+  phone_no: MyString
+  email: MyString
+  sex: MyString
+  DOB: 2023-06-20
+  emergency_contact_person_name: MyString
+  emergency_contact_person_number: MyString
+  emrgency_contact_person_email_id: MyString
+  patient_id: 1
+  bed_number: 1
+  emergency_admission: false
+  voter_id: MyString

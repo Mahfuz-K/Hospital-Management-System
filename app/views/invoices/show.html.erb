@@ -1,0 +1,57 @@
+
+<div>
+    <div class="container-fluid">
+
+ 
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          
+         
+          <div class="card-footer text-muted">
+            <h1 class="text-center mt-4">Amount: <%= @invoice.amount %></h1>
+            <h1 class="text-center mt-4">Payment Type: <%= @invoice.payment_type.name %></h1>
+            <small>Created <%= time_ago_in_words(@invoice.created_at) %> ago, 
+            </small>
+          </div>
+          <div class="buttons d-flex justify-content-md-center">
+          <div class="card text-dark m-5" style="max-width: 12rem;">
+              <%= link_to 'Back', patient_invoices_path, class: 'btn btn-info custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+             <%= link_to 'Edit', edit_patient_invoice_path, class: 'btn btn-warning custom-button' %>
+   
+             </div>
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+           <%= button_to 'Delete', patient_invoice_path(@patient,@invoice), method: :delete, class: 'btn btn-danger custom-button' %>
+   
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+   
+    <div><%= link_to 'Download Invoice Pdf',generate_invoice_patient_invoice_path(@patient,@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    </div><br>
+   <div> <%= link_to 'Send Email PDF', email_invoice_patient_invoice_path(@patient,@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;'%></div><br>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+

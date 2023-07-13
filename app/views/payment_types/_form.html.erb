@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+     
+      <%= form_with model: @payment_type do |form| %>
+        <!-- Form fields -->
+        <div class="form-group">
+          <%= form.label :name %>:<br>
+          <%= form.text_field :name, class: 'form-control' %>
+           <p class='error'><%= show_errors(@payment_type, :name) %></p>
+          <br>
+        </div>
+         <%= form.submit(nil, class: "btn btn-success") %>
+     <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

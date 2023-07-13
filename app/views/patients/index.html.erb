@@ -1,0 +1,98 @@
+<div class="container-fluid ">
+<% flash.each do |key, message| %>
+  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+ <h1>Patients<h1>
+<%= form_for :search_patients, url: search_patients_path, method: :get, html: { class: 'form-inline' } do |form| %>
+  <div class="mb-3 col-md-3">
+    <%= form.label :filter_column, "Filter By", class: "form-label" %>
+    <%= form.select :filter_column, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Patient ID", "patient_id"], ["Sex", "sex"], ["Bed Type", "bed_type"], ["Emergency Admission", "emergency_admission"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :filter_column) }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3 col-md-2">
+    <%= form.label :filter_value, "Filter Value", class: "form-label" %>
+    <%= form.text_field :filter_value, value: params.dig(:search_patients, :filter_value), placeholder: "Filter Value", class: "form-control" %>
+  </div>
+
+  <div class="mb-3 col-md-3">
+    <%= form.label :sort_by, "Sort By", class: "form-label" %>
+    <%= form.select :sort_by, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Phone No", "phone_no"], ["Patient ID", "patient_id"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :sort_by) }, class: "form-select" %>
+  </div>
+
+  <div class="input-group">
+    <%= form.text_field :query, value: params.dig(:search_patients, :query), class: "form-control form-control-lg", placeholder: "Search by ID, Name, Contact No, or DOB" %>
+    <div class="input-group-append">
+      <%= form.submit "Search", class: "btn btn-success btn-lg ml-3" %>
+    </div>
+  </div>
+<% end %>
+
+
+<br>
+<div class="row justify-content-md-center">
+ <div class="create-patient-link "><%= button_to 'Create New Patient', new_patient_path,method: :get, class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    </div><br>
+     <div class="col-11 mt-4 ">
+     <div class="card text-dark mb-3 " style=" background-color: skyblue;">
+<% unless @patients.nil? %>
+  <% if @patients.empty? %>
+    <h2>No patients found matching your query.</h2>
+  <% else %>
+    
+<table class="table table-striped table-responsive-sm" style="font-size: 23px;">
+      <thead>
+        <tr>
+          <th scope="col">Serial No</th>
+          <th scope="col">Patient Name: </th>
+          <th scope="col">Patient ID: </th>
+          <th scope="col">Email: </th>
+          <th scope="col">Phone No: </th>
+          <th scope="col">Date Of Birth: </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @patients.each_with_index do |patient, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%=  patient.name %></td>
+            <td><%= link_to patient.patient_id, patient_path(patient) %></td>
+            <td><%= patient.email %></td>
+            <td><%= patient.phone_no %></td>
+            <td><%= patient.date_of_birth %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
