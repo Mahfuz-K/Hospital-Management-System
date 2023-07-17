@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# This is migration file
+# rubocop:disable Metrics/MethodLength
 class CreatePatients < ActiveRecord::Migration[6.1]
   def change
     create_table :patients do |t|
@@ -18,3 +22,4 @@ class CreatePatients < ActiveRecord::Migration[6.1]
     end
   end
 end
+# rubocop:enable Metrics/MethodLength

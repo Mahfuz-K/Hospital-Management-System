@@ -15,29 +15,29 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= f.label :username %>
+    <%= f.label :username ,class: 'required'%>
     <%= f.text_field :username, class: 'form-control', required: true %>
   </div>
   <br>
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email ,class: 'required'%>
     <%= f.email_field :email, class: 'form-control', required: true %>
   </div>
   <br>
   <div class="form-group">
-    <%= f.label :password %>
+    <%= f.label :password ,class: 'required'%>
     <%= f.password_field :password, class: 'form-control', required: true %>
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   
   <br>
   <div class="form-group">
-    <%= f.label :password_confirmation, 'Confirm Password' %>
+    <%= f.label :password_confirmation, 'Confirm Password' ,class: 'required'%>
     <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
   </div>
   <br>
   <div class="form-group">
-   <%= f.select :role_id, options_for_select(Role.all.collect{|role| [role.name,role.id]}),  prompt: "Select a role for the user" %>
+   <%= f.select :role_id, options_for_select(Role.all.collect{|role| [role.name,role.id]}),  prompt: "Select a role for the user" ,class: 'required'%>
   </div>
   <br>
   <div class="form-group">

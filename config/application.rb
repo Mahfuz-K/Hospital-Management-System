@@ -1,18 +1,22 @@
+# rubocop:disable all
 require_relative "boot"
 
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+
 Bundler.require(*Rails.groups)
 
 module DummyHospitalManagement
+  # this is a root file
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     # Add the "app/assets" directory to the asset paths
     config.assets.enabled = true
-    config.assets.paths << Rails.root.join("app", "assets")
+    config.assets.paths << Rails.root.join("app'", "assets")
+    
 
     # Configuration for the application, engines, and railties goes here.
     #

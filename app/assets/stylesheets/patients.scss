@@ -6,4 +6,18 @@
    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
- 
+  .pagination-container .pagination li {
+    margin:10px;
+  }
+  .pagination{
+    font-size:large;
+   
+  }
+  .custom-carousel-icon {
+    background-color: #76c9e4; /* Customize the color as desired */
+  }
+  
+  .custom-carousel-icon:hover {
+    background-color: #70d7ec; /* Customize the hover color as desired */
+  }
+  

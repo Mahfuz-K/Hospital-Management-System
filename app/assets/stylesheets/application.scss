@@ -13,6 +13,7 @@
  *
  *= require_tree .
  *= require_self
+ 
 */
 
  @import 'bootstrap';
@@ -45,7 +46,14 @@
     
     font-family: Georgia, 'Times New Roman', Times, serif;
     
+
 }
+.required::after {
+    content: '*';
+    color: red;
+    margin-left: 2px;
+  }
+  
 
 
  

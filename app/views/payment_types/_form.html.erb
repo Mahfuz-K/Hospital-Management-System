@@ -5,7 +5,7 @@
       <%= form_with model: @payment_type do |form| %>
         <!-- Form fields -->
         <div class="form-group">
-          <%= form.label :name %>:<br>
+          <%= form.label :name ,class: 'required'%>:<br>
           <%= form.text_field :name, class: 'form-control' %>
            <p class='error'><%= show_errors(@payment_type, :name) %></p>
           <br>

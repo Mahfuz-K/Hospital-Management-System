@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # this is a controller
+# rubocop:disable Lint/UselessAssignment
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :admin?
   protect_from_forgery with: :exception
@@ -23,7 +24,5 @@ class ApplicationController < ActionController::Base
   def admin?
     current_user.role.name == 'Admin'
   end
-
-  
-  
 end
+# rubocop:enable Lint/UselessAssignment

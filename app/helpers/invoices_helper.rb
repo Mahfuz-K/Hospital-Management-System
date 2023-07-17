@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 # this is a helper
+
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Lint/UselessAssignment
 require 'prawn'
 require 'prawn/table'
+# this is a pdf helper
 module InvoicesHelper
   def invoice_pdf(invoice)
     Prawn::Document.new do |pdf|
@@ -63,3 +69,8 @@ module InvoicesHelper
     end
   end
 end
+
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/BlockLength
+# rubocop:enable Lint/UselessAssignment

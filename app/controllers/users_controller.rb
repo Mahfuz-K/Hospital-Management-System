@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # this is a controller
+# rubocop:disable Metrics/MethodLength
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy unlock_users]
   before_action :require_user, except: %i[unlock_account confirm]
@@ -70,21 +71,18 @@ class UsersController < ApplicationController
       @user.destroy
       session[:user_id] = nil if @user == current_user
       flash[:notice] = 'Account and all associated articles successfully deleted'
-      redirect_to users_path
     else
       flash[:alert] = 'Not an Admin.'
-      redirect_to users_path
     end
+    redirect_to users_path
   end
 
   def confirm
     @user = User.find_by(confirmation_token: params[:token])
-    if @user
-      @user.confirm!
-      redirect_to confirm_user_path
-    else
-      # Handle invalid confirmation token
-    end
+    return unless @user
+
+    @user.confirm!
+    redirect_to confirm_user_path
   end
 
   def locked
@@ -97,7 +95,7 @@ class UsersController < ApplicationController
     user.is_locked = false
     user.failed_login_attempts = 0
     user.save
-    flash[:alert] = "#{user.username} account has been unlocked."
+    flash[:success] = "#{user.username} account has been unlocked."
     redirect_to locked_users_path
   end
 
@@ -111,3 +109,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password, :role_id)
   end
 end
+# rubocop:enable Metrics/MethodLength

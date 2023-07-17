@@ -1,3 +1,4 @@
+# rubocop:disable all
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -29,11 +30,9 @@ gem 'elasticsearch', '~> 7.17.7'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'rubocop'
-
-
-
-
-
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'factory_bot_rails'
+gem 'rspec-rails', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

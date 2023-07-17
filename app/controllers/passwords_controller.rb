@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # this is a controller
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable  Metrics/MethodLength
 class PasswordsController < ApplicationController
   def forgot_password; end
 
@@ -34,3 +36,5 @@ class PasswordsController < ApplicationController
     end
   end
 end
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/MethodLength

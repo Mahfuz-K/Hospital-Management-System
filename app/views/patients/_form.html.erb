@@ -5,76 +5,76 @@
       <%= form_with model: @patient do |form| %>
         <!-- Form fields -->
         <div class="form-group">
-          <%= form.label :name %>:<br>
+          <%= form.label :name ,class: 'required'%>:<br>
           <%= form.text_field :name, class: 'form-control' %>
            <p class='error'><%= show_errors(@patient, :name) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :age %><br>
+          <%= form.label :age ,class: 'required'%><br>
           <%= form.text_field :age, class: 'form-control' %>
            <p class='error'><%= show_errors(@patient, :age) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :sex %><br>
+          <%= form.label :sex ,class: 'required' %><br>
           <%= form.select :sex, options_for_select(['Male', 'Female', 'Other']), { prompt: "Select a gender" }, class: 'form-control' %>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :email %><br>
+          <%= form.label :email ,class: 'required' %><br>
           <%= form.text_field :email, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :email) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :phone_no %><br>
+          <%= form.label :phone_no ,class: 'required'%><br>
           <%= form.text_field :phone_no, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :phone_no) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :date_of_birth %><br>
+          <%= form.label :date_of_birth ,class: 'required'%><br>
           <%= form.date_field :date_of_birth, class: 'form-control' %>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :voter_id %><br>
+          <%= form.label :voter_id ,class: 'required'%><br>
           <%= form.file_field :voter_id, class: 'form-control-file' %>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :emergency_contact_person_name %><br>
+          <%= form.label :emergency_contact_person_name,class: 'required' %><br>
           <%= form.text_field :emergency_contact_person_name, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :emergency_contact_person_name) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :emergency_contact_person_number %><br>
+          <%= form.label :emergency_contact_person_number ,class: 'required'%><br>
           <%= form.text_field :emergency_contact_person_number, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :emergency_contact_person_number) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :emergency_contact_person_email_id %><br>
+          <%= form.label :emergency_contact_person_email_id ,class: 'required'%><br>
           <%= form.text_field :emergency_contact_person_email_id, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :emergency_contact_person_email_id) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :bed_number %><br>
+          <%= form.label :bed_number ,class: 'required'%><br>
           <%= form.text_field :bed_number, class: 'form-control' %><br>
            <p class='error'><%= show_errors(@patient, :bed_number) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :address %><br>
+          <%= form.label :address ,class: 'required'%><br>
           <%= form.text_area :address, class: 'form-control' %><br>
          <p class='error'><%= show_errors(@patient, :address) %></p>
         </div>
         <br>
         <div class="form-group">
-          <%= form.label :bed_type_id %><br>
+          <%= form.label :bed_type_id ,class: 'required'%><br>
           <%= form.select :bed_type_id, options_for_select(BedType.all.collect { |bed_type| [bed_type.name, bed_type.id] }), { prompt: "Select a bed type" }, class: 'form-control' %>
         </div>
         <br>

@@ -15,7 +15,6 @@ class BedTypesController < ApplicationController
 
   def new
     @bed_type = BedType.new
-    
     return if admin?
 
     flash[:alert] = 'Not an Admin.'

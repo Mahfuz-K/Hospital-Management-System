@@ -5,9 +5,8 @@
       <%= form_with model: [@patient, @invoice] do |form| %>
         <!-- Form fields -->
         <div class="form-group">
-          <%= form.label :amount %>:<br>
-          <%= form.text_field :amount, class: 'form-control' %>
-          <p class='error'><%= show_errors([@patient, @invoice], :name) %></p>
+          <%= form.label :amount ,class: 'required'%>:<br>
+          <%= form.text_field :amount, class: 'form-control ' %>
           <br>
         </div>
           

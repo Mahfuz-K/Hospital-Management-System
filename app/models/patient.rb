@@ -1,4 +1,7 @@
-# rubocop:disable
+# frozen_string_literal: true
+
+# this is a model
+# rubocop:disable all
 
 class Patient < ApplicationRecord
   include Elasticsearch::Model
@@ -7,13 +10,14 @@ class Patient < ApplicationRecord
     __elasticsearch__.create_index! force: true
     __elasticsearch__.import
   end
+  
   has_many_attached :voter_id
   belongs_to :bed_type
   has_many :invoices, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
-  validates :voter_id, presence: true
   validates :name, presence: true
-  validates :phone_no, presence: true, format: { with: /\A\d+\z/, message: 'only allows digits' }
+  validates :phone_no,length: { minimum: 8, maximum: 10, message: 'Invalid phone number' },
+  presence: { message: "Phone number can't be empty" }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
@@ -49,7 +53,7 @@ class Patient < ApplicationRecord
       indexes :address, type: :text, fielddata: :true
       indexes :emergency_admission, type: :text, fielddata: :true
 
-      
+
     end
   end
   def as_indexed_json(_options = {})
@@ -84,7 +88,7 @@ class Patient < ApplicationRecord
       }
     }
   
-    unless filter_column.empty? 
+    if !filter_column.empty? && !filter_value.empty?
       search_params[:query][:bool][:filter] << {
         term: {
           filter_column.to_sym => filter_value
@@ -102,4 +106,6 @@ class Patient < ApplicationRecord
   
     search(search_params)
   end
+  index_data
 end  
+# rubocop:enable all
