@@ -4,6 +4,7 @@
 class PaymentTypesController < ApplicationController
   before_action :require_user
   before_action :admin?
+  before_action :restrict_user
   before_action :set_payment_type, only: %i[show edit update destroy]
 
   def index

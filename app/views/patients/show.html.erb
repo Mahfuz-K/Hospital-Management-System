@@ -5,10 +5,12 @@
    <%= link_to 'Prescription Tab', patient_prescriptions_path(patient_id: @patient.id), class: 'btn  custom-button',style: 'background-color: rgb(52, 131, 172);color: azure;' %>
    
   </div>
-  <div class="card text-dark m-5" style="max-width: 13rem;">
-   <%= link_to 'Invoice Tab', patient_invoices_path(patient_id: @patient.id), class: 'btn btn-info custom-button',style: 'background-color: rgb(52, 131, 172);color: azure;' %>
-   
-  </div>
+<div class="card text-dark m-5" style="max-width: 13rem;">
+  <%= link_to  patient_invoice_patient_path(@patient), class: 'btn btn-info custom-button', style: 'background-color: rgb(52, 131, 172); color: azure;' do%>
+  <%=@patient.name %> invoice<%end  %>
+</div>
+
+
   
 
 </div>
@@ -75,16 +77,16 @@
  </div>
   <div class="buttons d-flex">
         <div class="card text-dark m-5" style="max-width: 12rem;">
-   <%= link_to 'Back', patients_path, class: 'btn btn-info custom-button' %>
+   <%= link_to 'Back', patients_path, class: 'btn btn-outline-info custom-button' %>
    
   </div>
   <div class="card text-dark m-5" style="max-width: 12rem;">
-   <%= link_to 'Edit', edit_patient_path(patient_id: @patient.id), class: 'btn btn-warning custom-button' %>
+   <%= link_to 'Edit', edit_patient_path(patient_id: @patient.id), class: 'btn btn-outline-warning custom-button' %>
    
   </div>
   <div class="card text-dark m-5" style="max-width: 12rem;">
    
-   <%= button_to "Delete", patient_path(@patient), method: :delete, class: "btn btn-danger custom-button" %>
+   <%= button_to "Delete", patient_path(@patient), method: :delete, class: "btn btn-outline-danger custom-button" %>
    
   </div>
     </div>

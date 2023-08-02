@@ -6,7 +6,7 @@
 
 class PatientsController < ApplicationController
   before_action :require_user
-  before_action :set_patient, only: %i[show edit update destroy]
+  before_action :set_patient, only: %i[show edit update destroy patient_invoice]
 
   def index
     @patients = Patient.all.order('created_at DESC')
@@ -45,6 +45,8 @@ class PatientsController < ApplicationController
 
     redirect_to root_path
   end
+
+  def patient_invoice; end
 
   def search
     query = params[:search_patients].presence && params[:search_patients][:query]

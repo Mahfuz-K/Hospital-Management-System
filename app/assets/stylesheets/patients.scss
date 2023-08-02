@@ -14,10 +14,24 @@
    
   }
   .custom-carousel-icon {
-    background-color: #76c9e4; /* Customize the color as desired */
+    background-color: #76c9e4; 
   }
   
   .custom-carousel-icon:hover {
-    background-color: #70d7ec; /* Customize the hover color as desired */
+    background-color: #70d7ec; 
   }
   
+  .custom-form {
+    background-color: #ebf4fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+
+.custom-label {
+  font-size: 19px; 
+}
+
+.custom-select {
+  font-size: 19px; 
+}

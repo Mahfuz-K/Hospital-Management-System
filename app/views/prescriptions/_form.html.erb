@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-8 custom-form">
      
       <%= form_with model: [@patient, @prescription] do |form| %>
         <!-- Form fields -->
         <div class="form-group">
           <%= form.label :description ,class: 'required'%>:<br>
           <%= form.text_field :description, class: 'form-control' %>
+          <p class='error text-danger'><%= show_errors(@prescription, :description) %></p>
           <br>
         </div>
-         <%= form.submit(nil, class: "btn btn-success") %>
+         <%= form.submit(nil, class: "btn btn-success full-width-button") %>
      <% end %>
     </div>
   </div>

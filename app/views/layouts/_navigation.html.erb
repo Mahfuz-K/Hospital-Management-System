@@ -9,22 +9,45 @@
           <li class="nav-item <%= 'active' if current_page?(patients_path) %>">
         <a class="nav-link" href="<%= patients_path %>">Patients</a>
       </li>
+      <%if admin? %>
       <li class="nav-item <%= 'active' if current_page?(users_path) %>">
         <a class="nav-link" href="<%= users_path %>">Users</a>
       </li>
+      <%end %>
+      <%if admin? %>
       <li class="nav-item <%= 'active' if current_page?(roles_path) %>">
         <a class="nav-link" href="<%= roles_path %>">Roles</a>
       </li>
+      <%end %>
+      <%if admin? %>
       <li class="nav-item <%= 'active' if current_page?(bed_types_path) %>">
         <a class="nav-link" href="<%= bed_types_path %>">Bed Types</a>
       </li>
+      <%end %>
+      <%if admin? %>
       <li class="nav-item <%= 'active' if current_page?(payment_types_path) %>">
         <a class="nav-link" href="<%= payment_types_path %>">Payment Types</a>
+      </li>
+      <%end %>
+        <li class="nav-item <%= 'active' if current_page?(invoices_path) %>">
+        <a class="nav-link" href="<%= invoices_path %>">Invoices</a>
       </li>
     </ul>
     <ul class="navbar-nav">
             
-        <li class="  text-white text-bold mx-3"> <%= current_user.username %> (<%= current_user.role.name%>  ) </li>     
+<li class="text-white text-bold mx-3  ">
+
+<%= link_to user_path(current_user), class: "text-center d-flex flex-column align-items-center mt-2", style: "text-decoration: none; color: white;" do %>
+  <span class="custom-link">
+    <i class="fa-solid fa-user fa-2xl custom-profile mb-3 "></i>
+    My Profile
+  </span>
+<% end %>
+
+
+
+
+</li>
         <%= button_to 'Logout', logout_path, method: :delete, class: 'logout-button' %>
     </ul>
   </div>

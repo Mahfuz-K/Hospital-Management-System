@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-8 custom-form">
      
       <%= form_with model: @payment_type do |form| %>
         <!-- Form fields -->
         <div class="form-group">
           <%= form.label :name ,class: 'required'%>:<br>
           <%= form.text_field :name, class: 'form-control' %>
-           <p class='error'><%= show_errors(@payment_type, :name) %></p>
+           <p class='error text-danger'><%= show_errors(@payment_type, :name) %></p>
           <br>
         </div>
-         <%= form.submit(nil, class: "btn btn-success") %>
+         <%= form.submit(nil, class: "btn btn-success full-width-button") %>
      <% end %>
     </div>
   </div>

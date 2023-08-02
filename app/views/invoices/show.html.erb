@@ -16,15 +16,15 @@
           </div>
           <div class="buttons d-flex justify-content-md-center">
           <div class="card text-dark m-5" style="max-width: 12rem;">
-              <%= link_to 'Back', patient_invoices_path, class: 'btn btn-info custom-button' %>
+  <%= link_to 'Back', invoices_path, class: 'btn btn-outline-info custom-button' %>
+</div>
+
+            <div class="card text-dark m-5" style="max-width: 12rem;">
+             <%= link_to 'Edit', edit_invoice_path, class: 'btn btn-outline-warning custom-button' %>
    
              </div>
             <div class="card text-dark m-5" style="max-width: 12rem;">
-             <%= link_to 'Edit', edit_patient_invoice_path, class: 'btn btn-warning custom-button' %>
-   
-             </div>
-            <div class="card text-dark m-5" style="max-width: 12rem;">
-           <%= button_to 'Delete', patient_invoice_path(@patient,@invoice), method: :delete, class: 'btn btn-danger custom-button' %>
+           <%= button_to 'Delete', invoice_path(@invoice), method: :delete, class: 'btn btn-outline-danger custom-button' %>
    
             </div>
          </div>
@@ -32,9 +32,9 @@
       </div>
     </div>
    
-    <div><%= link_to 'Download Invoice Pdf',generate_invoice_patient_invoice_path(@patient,@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
+    <div><%= link_to 'Download Invoice Pdf',generate_invoice_invoice_path(@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;' %>
     </div><br>
-   <div> <%= link_to 'Send Email PDF', email_invoice_patient_invoice_path(@patient,@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;'%></div><br>
+   <div> <%= link_to 'Send Email PDF', email_invoice_invoice_path(@invoice, format: :pdf), class: 'btn btn-lg custom-button' ,style: 'background-color: rgb(52, 131, 172);color: azure;'%></div><br>
 
 </div>
 

@@ -9,3 +9,37 @@
 .card-footer{
     background-color: rgb(158, 215, 239);
 }
+.custom-form {
+    background-color: #ebf4fa; /* Wheatish background color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+ /* Add this CSS to your stylesheet or style section */
+.custom-dropdown {
+    width: 100%;
+  }
+  .custom-dropdown select {
+    width: 100%;
+  }
+  
+  /* Add this CSS to your stylesheet or style section */
+/* Add this CSS to your stylesheet or style section */
+.full-width-button {
+  
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .full-width-button input[type="submit"] {
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .create-user-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  
+  

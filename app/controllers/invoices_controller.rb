@@ -2,13 +2,12 @@
 
 # this is a controller
 class InvoicesController < ApplicationController
-  before_action :set_patient, except: [:generate_invoice]
   before_action :require_user
   before_action :set_invoice, only: %i[show edit update destroy]
 
   include InvoicesHelper
   def index
-    @invoices = @patient.invoices.all.order('created_at DESC')
+    @invoices = Invoice.all.order('created_at DESC')
   end
 
   def show; end
@@ -19,11 +18,10 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.create(invoice_params)
-    @invoice.patient_id = @patient.id
-
+   
     if @invoice.save
 
-      redirect_to patient_invoice_path(@patient, @invoice)
+      redirect_to invoice_path(@invoice)
     else
       render :new
     end
@@ -33,7 +31,7 @@ class InvoicesController < ApplicationController
 
   def update
     if @invoice.update(invoice_params)
-      redirect_to patient_invoice_path(@patient, @invoice)
+      redirect_to invoice_path(@invoice)
     else
       render :edit
     end
@@ -41,8 +39,8 @@ class InvoicesController < ApplicationController
 
   def destroy
     @invoice.destroy
-
-    redirect_to patient_invoices_path
+    redirect_to invoices_path
+    flash[:alert] = 'Invoice has been deleted'
   end
 
   def generate_invoice
@@ -56,18 +54,14 @@ class InvoicesController < ApplicationController
     pdf = invoice_pdf(@invoice)
     InvoiceMailer.with(patient: @invoice.patient, invoice: pdf).invoice_email.deliver_now
 
-    flash[:success] = "Invoive mail sent to #{@patient.name}"
-    redirect_to patient_invoices_path(@patient)
+    flash[:success] = "Invoive mail sent to #{@invoice.patient.name}"
+    redirect_to invoice_path(@invoice)
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:amount, :payment_type_id)
-  end
-
-  def set_patient
-    @patient = Patient.find(params[:patient_id])
+    params.require(:invoice).permit(:amount, :payment_type_id, :patient_id)
   end
 
   def set_invoice

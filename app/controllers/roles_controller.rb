@@ -3,6 +3,7 @@
 # this is a controller
 class RolesController < ApplicationController
   before_action :require_user
+  before_action :restrict_user
   before_action :set_role, only: %i[show edit update destroy]
 
   def index

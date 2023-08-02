@@ -1,43 +1,53 @@
-<div class="container">
-  <% flash.each do |key, message| %>
+
+<div class="container ">
+<% flash.each do |key, message| %>
     <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
       <%= message %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
-  <div class="container-fluid">
-    <h1>Prescription</h1>
-    <%= button_to 'Create New Prescription', new_patient_prescription_path, method: :get, class: 'btn text- btn-lg custom-button', style: 'background-color: rgb(52, 131, 172); color: azure;' %>
+  <div class="create-prescription-link d-flex justify-content-between align-items-center mt-5">
+    <h1 class="text-center">Prescriptions</h1>
+    <%= button_to new_patient_prescription_path, method: :get, class: 'btn btn-lg custom-button', style: 'background-color: rgb(52, 131, 172); color: azure;' do %>
+      <i class="fa-solid fa-plus"></i>
+      Create New prescription
+    <% end %>
   </div>
   <br>
 
-  <div class="row justify-content-md-center">
-    <div class="col-6 mt-4">
-      <div class="card text-dark mb-3" style="max-width: 38rem; background-color: skyblue;">
-        <% if @prescriptions.any? %>
-          <table class="table table-striped">
-            <thead>
+  <div class="col-12 mt-4">
+    <div class="card text-dark mb-3">
+      <% if @prescriptions.empty? %>
+        <h2>No prescription found matching your query.</h2>
+      <% else %>
+        <table class="table table-striped table-responsive-sm" style="font-size: 23px;">
+          <thead>
+            <tr>
+              <th scope="col">Serial No</th>
+              <th scope="col">Prescriptions</th>
+              <th scope="col" class="text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @prescriptions.each_with_index do |prescription, index| %>
               <tr>
-                <th scope="col">Serial No</th>
-                <th scope="col">Prescriptions</th>
+                <td><%= index + 1 %></td>
+                <td>
+                <%= link_to prescription.description, patient_prescription_path(@patient,prescription) , style: 'text-decoration: none;'%></td>
+                <td class="d-flex justify-content-end gap-4">
+                  <%= link_to edit_patient_prescription_path(@patient,prescription), class: 'btn btn-outline-primary custom-button' do %>
+                    <i class="fa-solid fa-pen-to-square"></i>Edit
+                  <% end %>
+                  <%= button_to patient_prescription_path(@patient,prescription), method: :delete, class: "btn btn-outline-danger custom-button" do %>
+                    <i class="fa-solid fa-trash"></i>Delete
+                  <% end %>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <% @prescriptions.each_with_index do |prescription, index| %>
-                <tr>
-                  <td><%= index + 1 %></td>
-                  <td><%= link_to prescription.description, patient_prescription_path(@patient, prescription) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          <div class="card-body">
-            <p>No prescriptions available.</p>
-          </div>
-        <% end %>
-      </div>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
-</div>
+ </div>

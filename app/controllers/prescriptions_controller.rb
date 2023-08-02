@@ -51,6 +51,7 @@ class PrescriptionsController < ApplicationController
   def destroy
     if admin?
       @prescription.destroy
+      flash[:alert] = 'Prescription has been deleted.'
       redirect_to patient_prescriptions_path
     else
       flash[:alert] = 'Not an Admin.'

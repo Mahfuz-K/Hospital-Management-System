@@ -15,3 +15,14 @@ import 'bootstrap/dist/js/bootstrap'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('DOMContentLoaded', function () {
+    const alerts = document.querySelectorAll('.custom-alert');
+  
+    alerts.forEach(function (alert) {
+      setTimeout(function () {
+        alert.style.display = 'none';
+      }, 2000);
+    });
+  });
+  

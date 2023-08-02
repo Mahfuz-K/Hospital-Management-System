@@ -3,9 +3,10 @@
 # this is a controller
 # rubocop:disable Metrics/MethodLength
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy unlock_users]
+  before_action :set_user, only: %i[show edit update destroy unlock_users restrict_action]
   before_action :require_user, except: %i[unlock_account confirm]
   before_action :admin?, except: %i[confirm unlock_account]
+  before_action :restrict_action
 
   def unlock_account
     user = User.find_by(unlock_token: params[:unlock_token])
@@ -36,12 +37,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def edit
-    return if admin?
-
-    flash[:alert] = 'Not an Admin.'
-    redirect_to user_path(@user)
-  end
+  def edit; end
 
   def create
     @user = User.new(user_params)
@@ -59,7 +55,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @patient.update(user_params)
+    if @user.update(user_params)
+      flash[:success] = 'Account has been updated'
       redirect_to @user
     else
       render :edit
@@ -97,6 +94,12 @@ class UsersController < ApplicationController
     user.save
     flash[:success] = "#{user.username} account has been unlocked."
     redirect_to locked_users_path
+  end
+
+  def restrict_action
+    return if @user == current_user
+
+    redirect_to root_path unless admin?
   end
 
   private

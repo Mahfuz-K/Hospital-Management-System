@@ -17,12 +17,10 @@
 */
 
  @import 'bootstrap';
- body{
-    background-color: rgb(201, 226, 236)!important;
- }
+
 .logout-button{
     background-color: rgb(52, 131, 172);
-    // margin-left: 190px;
+
     padding: 5px;
     border-radius: 6px;
 }
@@ -53,9 +51,28 @@
     color: red;
     margin-left: 2px;
   }
+ 
+  .custom-link {
+     color: white; 
+    transition: color 0.3s ease; 
+  }
   
+  .custom-link:hover {
+    color: #333; 
+  }
 
+  .remove_underline{
+    text-decoration: none;
+  }
 
  
-
+  .full-width-button {
+  
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .full-width-button input[type="submit"] {
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
  

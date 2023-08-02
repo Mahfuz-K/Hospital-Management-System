@@ -3,6 +3,7 @@
 # this is a controller
 class BedTypesController < ApplicationController
   before_action :require_user
+  before_action :restrict_user
   before_action :admin?
   before_action :set_bed_type, only: %i[show edit update destroy]
   # before_action :show_errors, only: %i[new create edit update]

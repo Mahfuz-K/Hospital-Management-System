@@ -11,11 +11,14 @@ Rails.application.routes.draw do
       get :search
     end
     resources :prescriptions
-    resources :invoices do
-      member do
-        get :generate_invoice
-        get :email_invoice
-      end
+    member do
+      get :patient_invoice
+    end
+  end
+  resources :invoices do
+    member do
+      get :generate_invoice
+      get :email_invoice
     end
   end
   root to: 'sessions#new'
@@ -45,6 +48,10 @@ Rails.application.routes.draw do
   get '/homepage', to: 'welcome#homepage'
   post '/login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  match '*unmatched', to: 'application#not_found_method', via: :all, constraints: lambda { |req|
+    !req.path.match(%r{\A/rails/active_storage/})
+  }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

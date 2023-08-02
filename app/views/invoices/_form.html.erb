@@ -1,33 +1,30 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-     
-      <%= form_with model: [@patient, @invoice] do |form| %>
-        <!-- Form fields -->
-        <div class="form-group">
-          <%= form.label :amount ,class: 'required'%>:<br>
-          <%= form.text_field :amount, class: 'form-control ' %>
-          <br>
-        </div>
-          
-        <div>
-               <%= form.select :payment_type_id, options_for_select(PaymentType.all.collect{|payment_type| [payment_type.name,payment_type.id]}),  prompt: "Select a Payment type" %>
-        </div>
-         <br>
-         <%= form.submit(nil, class: "btn btn-success") %>
-     <% end %>
+<div class="container mt-5">
+   <div class="row justify-content-center">
+    <div class="col-lg-8 custom-form ">
+ 
+  <%= form_with(model: @invoice, url: invoices_path, method: :post) do |f| %>
+    <div class="form-group mt-4">
+      <%= f.label :patient_id, class: 'required' %><br>
+      <%= f.select :patient_id,
+                   options_for_select(Patient.all.collect { |patient| [patient.name, patient.id] }, @invoice.patient_id),
+                   { prompt: "Select a Patient" } ,{ class: "custom-dropdown" }%>
+      <p class='error text-danger'><%= show_errors(@invoice, :patient_id) %></p>
     </div>
-  </div>
+    <div class="form-group mt-4">
+      <%= f.label :amount %>
+      <%= f.number_field :amount, class: "form-control" %>
+    </div>
+    <div> 
+  <%= f.select :payment_type_id,
+             options_for_select(PaymentType.all.collect { |payment_type| [payment_type.name, payment_type.id] }, @invoice.payment_type_id),
+             { prompt: "Select a Payment type" }, { class: "custom-dropdown" } %>
+
+      <p class='error text-danger'><%= show_errors(@invoice, :payment_type_id) %></p>
+    </div>
+    <div class="form-group mt-4">
+      <%= f.submit "Generate Invoice", class: "btn btn-success full-width-button" %>
+    </div>
+  <% end %>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+</div>

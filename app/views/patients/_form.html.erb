@@ -1,19 +1,20 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <h1>New Patient Registration</h1>
+
+<div class="container ">
+  <div class="row justify-content-center custom-form">
+    <div class="col-lg-8 ">
+     
       <%= form_with model: @patient do |form| %>
         <!-- Form fields -->
         <div class="form-group">
           <%= form.label :name ,class: 'required'%>:<br>
           <%= form.text_field :name, class: 'form-control' %>
-           <p class='error'><%= show_errors(@patient, :name) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :name) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :age ,class: 'required'%><br>
           <%= form.text_field :age, class: 'form-control' %>
-           <p class='error'><%= show_errors(@patient, :age) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :age) %></p>
         </div>
         <br>
         <div class="form-group">
@@ -24,13 +25,13 @@
         <div class="form-group">
           <%= form.label :email ,class: 'required' %><br>
           <%= form.text_field :email, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :email) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :email) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :phone_no ,class: 'required'%><br>
           <%= form.text_field :phone_no, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :phone_no) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :phone_no) %></p>
         </div>
         <br>
         <div class="form-group">
@@ -38,39 +39,57 @@
           <%= form.date_field :date_of_birth, class: 'form-control' %>
         </div>
         <br>
-        <div class="form-group">
-          <%= form.label :voter_id ,class: 'required'%><br>
-          <%= form.file_field :voter_id, class: 'form-control-file' %>
-        </div>
-        <br>
+       
+      <div class="form-group">
+  <%= form.label :voter_id, class: 'required' %><br>
+  <div class="custom-file">
+    <%= form.file_field :voter_id, class: 'custom-file-input', id: 'voter_id_input' %>
+    <label class="custom-file-label" for="voter_id_input">
+      Choose file(s)...
+    </label>
+  </div>
+</div>
+
+         <% if @patient.voter_id.attached? %>
+           <h6>Attached Files:</h6>
+           <ul>
+             <% @patient.voter_id.each do |file| %>
+               <li><%= file.filename.to_s %></li>
+             <% end %>
+           </ul>
+         <% end %>
+
+
+          <br>
+          
         <div class="form-group">
           <%= form.label :emergency_contact_person_name,class: 'required' %><br>
           <%= form.text_field :emergency_contact_person_name, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :emergency_contact_person_name) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :emergency_contact_person_name) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :emergency_contact_person_number ,class: 'required'%><br>
           <%= form.text_field :emergency_contact_person_number, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :emergency_contact_person_number) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :emergency_contact_person_number) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :emergency_contact_person_email_id ,class: 'required'%><br>
           <%= form.text_field :emergency_contact_person_email_id, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :emergency_contact_person_email_id) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :emergency_contact_person_email_id) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :bed_number ,class: 'required'%><br>
           <%= form.text_field :bed_number, class: 'form-control' %><br>
-           <p class='error'><%= show_errors(@patient, :bed_number) %></p>
+           <p class='error text-danger'><%= show_errors(@patient, :bed_number) %></p>
         </div>
         <br>
         <div class="form-group">
           <%= form.label :address ,class: 'required'%><br>
           <%= form.text_area :address, class: 'form-control' %><br>
-         <p class='error'><%= show_errors(@patient, :address) %></p>
+         <p class='error text-danger'><%= show_errors(@patient, :address) %></p>
         </div>
         <br>
         <div class="form-group">

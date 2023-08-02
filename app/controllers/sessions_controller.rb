@@ -37,17 +37,20 @@ class SessionsController < ApplicationController
   end
 
   def failed_login(user)
-    user.increment!(:failed_login_attempts)
-    if user.failed_login_attempts >= 3
-      user.update(is_locked: true)
-      user.generate_unlock_token
-      user.unlock_token = user.generate_unlock_token
-      user.save
-      StaffMailer.unlock_account_email(user).deliver_now
-      redirect_to '/login',
-                  flash: { alert: 'Your account has been locked. Please check your email for instructions to unlock.' }
+    if user
+      user.increment!(:failed_login_attempts)
+      if user.failed_login_attempts >= 3
+        user.update(is_locked: true)
+        user.generate_unlock_token
+        user.unlock_token = user.generate_unlock_token
+        user.save
+        StaffMailer.unlock_account_email(user).deliver_now
+        redirect_to '/login', flash: { alert: 'Your account has been locked. Please check your email for instructions to unlock.' }
+      end
     else
+
       redirect_to '/login', flash: { alert: 'There was something wrong with your login details.' }
+
     end
   end
 end

@@ -16,8 +16,10 @@ class Patient < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
   validates :name, presence: true
-  validates :phone_no,length: { minimum: 8, maximum: 10, message: 'Invalid phone number' },
+  validates :phone_no,length: { minimum: 8, maximum: 10, message: 'Invalid phone number' },numericality: { only_integer: true },
   presence: { message: "Phone number can't be empty" }
+  validates :bed_number,length: { minimum: 1, maximum: 3, message: 'Invalid bed  number' },numericality: { only_integer: true },
+  presence: { message: "Bed number can't be empty" }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
@@ -26,7 +28,7 @@ class Patient < ApplicationRecord
 
   validates :sex, presence: true, inclusion: { in: %w[Male Female Other] }
   validates :address, presence: true
-  validates :age, presence: true
+  validates :age, presence: { message: "Amount can't be null" }, numericality: { greater_than: 0 }
   validates :date_of_birth, presence: true
   validates :emergency_contact_person_name, presence: true
   validates :emergency_contact_person_number, presence: true,

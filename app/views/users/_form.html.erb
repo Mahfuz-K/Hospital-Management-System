@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-8 custom-form">
 <%= form_with model: @user do |f| %>
 
 <% if @user.errors.any? %>
@@ -17,32 +17,47 @@
   <div class="form-group">
     <%= f.label :username ,class: 'required'%>
     <%= f.text_field :username, class: 'form-control', required: true %>
+    <p class='error text-danger'><%= show_errors(@user, :username) %></p>
+
   </div>
   <br>
   <div class="form-group">
     <%= f.label :email ,class: 'required'%>
     <%= f.email_field :email, class: 'form-control', required: true %>
+    <p class='error text-danger'><%= show_errors(@user, :email) %></p>
+
   </div>
   <br>
+  <% if  current_user==@user || (admin? && (controller_name == 'users' && action_name =='new'))  %>
   <div class="form-group">
     <%= f.label :password ,class: 'required'%>
     <%= f.password_field :password, class: 'form-control', required: true %>
+    <p class='error text-danger'><%= show_errors(@user, :password) %></p>
+
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
-  
+ 
   <br>
   <div class="form-group">
     <%= f.label :password_confirmation, 'Confirm Password' ,class: 'required'%>
     <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
   </div>
+   <%end %>
   <br>
-  <div class="form-group">
-   <%= f.select :role_id, options_for_select(Role.all.collect{|role| [role.name,role.id]}),  prompt: "Select a role for the user" ,class: 'required'%>
-  </div>
+<div class="form-group custom-dropdown">
+  <%= f.select :role_id,
+    options_for_select(Role.all.collect { |role| [role.name, role.id] }, selected: @user.role_id),
+    prompt: "Select a role for the user",
+    class: 'custom-dropdown'
+  %>
+</div>
+
+
   <br>
-  <div class="form-group">
-    <%= f.submit(nil, class: "btn btn-success") %>
-  </div>
+ <div class="form-group full-width-button">
+  <%= f.submit(nil, class: "btn btn-success") %>
+</div>
+
 <% end %>
 
 </div>
