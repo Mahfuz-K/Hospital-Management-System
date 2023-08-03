@@ -49,14 +49,7 @@
  <%end %>
     </div>
     <br>
-   <div class="pagination-container">
-  <nav>
-    <ul class="pagination justify-content-center">
-      <%= paginate @patients, inner_window: 2, outer_window: 1, previous_label: '&laquo; Prev', next_label: 'Next &raquo;', class: 'my-pagination' %>
-    </ul>
-    
-  </nav>
-</div>
+  
 
 
      <div class="col-11 mt-4 ">
@@ -66,7 +59,7 @@
     <h2>No patients found matching your query.</h2>
   <% else %>
 
-<table class="table table-striped table-responsive-sm " style="font-size: 23px;">
+<table class="table table-striped table-responsive-sm " style="font-size: 18px;">
       <thead>
         <tr>
           <th scope="col">Serial No</th>
@@ -97,4 +90,12 @@
 <% end %>
 </div>
 </div>
+</div>
+ <div class="pagination-container">
+  <nav>
+    <ul class="pagination justify-content-center">
+      <%= paginate @patients, inner_window: 2, outer_window: 1, previous_label: '&laquo; Prev', next_label: 'Next &raquo;', class: 'my-pagination' %>
+    </ul>
+    
+  </nav>
 </div>

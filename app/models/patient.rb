@@ -6,10 +6,7 @@
 class Patient < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-  def self.index_data
-    __elasticsearch__.create_index! force: true
-    __elasticsearch__.import
-  end
+  
   
   has_many_attached :voter_id
   belongs_to :bed_type
@@ -31,12 +28,19 @@ class Patient < ApplicationRecord
   validates :age, presence: { message: "Amount can't be null" }, numericality: { greater_than: 0 }
   validates :date_of_birth, presence: true
   validates :emergency_contact_person_name, presence: true
-  validates :emergency_contact_person_number, presence: true,
-                                              format: { with: /\A\d+\z/, message: 'only allows digits' }
-  validates :emergency_contact_person_email_id, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :emergency_contact_person_number, length: { minimum: 8, maximum: 10, message: 'Invalid phone number' },numericality: { only_integer: true },
+  presence: { message: "Phone number can't be empty" }
+  validates :emergency_contact_person_email_id, presence: true,
+  uniqueness: { case_sensitive: false },
+  length: { maximum: 105 },
+  format: { with: VALID_EMAIL_REGEX }
 
   before_create :generate_patient_id
-
+  def self.index_data
+    __elasticsearch__.create_index! force: true
+    __elasticsearch__.import
+  end
+  
   def generate_patient_id
     self.patient_id = loop do
       random_id = rand(100_000..999_999)
@@ -72,7 +76,6 @@ class Patient < ApplicationRecord
 
     }
   end
-
   def self.search_patients(query, filter_column, filter_value, sort_by)
     search_params = {
       query: {
@@ -89,8 +92,7 @@ class Patient < ApplicationRecord
         }
       }
     }
-  
-    if !filter_column.empty? && !filter_value.empty?
+      if filter_column.present? && filter_value.present?
       search_params[:query][:bool][:filter] << {
         term: {
           filter_column.to_sym => filter_value
@@ -108,6 +110,7 @@ class Patient < ApplicationRecord
   
     search(search_params)
   end
+  
   index_data
 end  
 # rubocop:enable all

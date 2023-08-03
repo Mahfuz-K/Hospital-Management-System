@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     alerts.forEach(function (alert) {
       setTimeout(function () {
         alert.style.display = 'none';
-      }, 2000);
+      }, 3000);
     });
   });
   

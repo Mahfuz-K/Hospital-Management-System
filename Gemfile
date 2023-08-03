@@ -33,6 +33,7 @@ gem 'rubocop'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'factory_bot_rails'
 gem 'rspec-rails', '~> 4.0'
+gem  'htmlbeautifier'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

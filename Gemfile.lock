@@ -136,6 +136,7 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
+    htmlbeautifier (1.4.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -208,8 +209,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
-    rack-mini-profiler (2.3.4)
-      rack (>= 1.2.0)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -349,6 +348,7 @@ DEPENDENCIES
   elasticsearch-model
   elasticsearch-rails
   factory_bot_rails
+  htmlbeautifier
   jbuilder (~> 2.7)
   jquery-ui-rails
   kaminari (~> 1.2, >= 1.2.1)
@@ -358,7 +358,6 @@ DEPENDENCIES
   prawn-table
   pry
   puma (~> 5.0)
-  rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
   rspec-rails (~> 4.0)
   rubocop
