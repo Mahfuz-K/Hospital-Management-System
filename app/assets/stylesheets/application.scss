@@ -81,3 +81,17 @@ body{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
  
+  @media (max-width: 980px) {
+    .custom-link{
+      position: absolute;
+      top: 20px;
+      right: 90px;
+    }
+  }
+  @media (max-width: 550px) {
+    .custom-link{
+      position: absolute;
+      top: 100px;
+      right: 10px;
+    }
+  }
