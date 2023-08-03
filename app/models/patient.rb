@@ -1,17 +1,13 @@
-# frozen_string_literal: true
-
-# this is a model
 # rubocop:disable all
-
 class Patient < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-  
   
   has_many_attached :voter_id
   belongs_to :bed_type
   has_many :invoices, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
+
   validates :name, presence: true
   validates :phone_no,length: { minimum: 8, maximum: 10, message: 'Invalid phone number' },numericality: { only_integer: true },
   presence: { message: "Phone number can't be empty" }

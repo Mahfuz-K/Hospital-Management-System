@@ -17,8 +17,7 @@ class PaymentTypesController < ApplicationController
     @payment_type = PaymentType.new
     return if admin?
 
-    flash[:alert] = 'Not an Admin.'
-    redirect_to payment_types_path
+    redirect_to payment_types_path, flash: { alert: 'Not an Admin.' }
   end
 
   def create
@@ -35,8 +34,8 @@ class PaymentTypesController < ApplicationController
   def edit
     return if admin?
 
-    flash[:alert] = 'Not an Admin.'
-    redirect_to payment_type_path(@payment_type)
+
+    redirect_to payment_type_path(@payment_type), flash: { alert: 'Not an Admin.' }
   end
 
   def update

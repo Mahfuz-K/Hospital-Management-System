@@ -1,4 +1,3 @@
-# rubocop:disable all
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -71,7 +70,7 @@ ActiveRecord::Schema.define(version: 2023_07_13_070423) do
     t.string "emergency_contact_person_email_id"
     t.integer "patient_id"
     t.integer "bed_number"
-    t.boolean "emergency_admission", default: false
+    t.boolean "emergency_admission", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "bed_type_id"

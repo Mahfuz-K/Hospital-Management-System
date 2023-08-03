@@ -22,8 +22,7 @@ class SessionsController < ApplicationController
         user.save
         redirect_to reset_password_path(token: user.reset_password_token)
       else
-        flash[:notice] = 'Logged in your account successfully'
-        redirect_to patients_path
+        redirect_to patients_path, flash: { notice: 'Logged in your account successfully' }
       end
     else
       failed_login(user)

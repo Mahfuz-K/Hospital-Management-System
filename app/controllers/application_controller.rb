@@ -22,8 +22,7 @@ class ApplicationController < ActionController::Base
   def require_user
     return if logged_in?
 
-    flash[:alert] = 'You must be logged in to perform that action'
-    redirect_to root_path
+    redirect_to root_path, flash: { alert: 'You must be logged in to perform that action' }
   end
 
   def admin?

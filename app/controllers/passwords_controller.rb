@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 # this is a controller
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable  Metrics/MethodLength
 class PasswordsController < ApplicationController
   def forgot_password; end
 
@@ -12,8 +10,7 @@ class PasswordsController < ApplicationController
       user.generate_reset_password_token
       StaffMailer.password_reset_email(user).deliver_later
     end
-    flash[:notice] = 'Please check your mail for further instructions'
-    redirect_to login_path
+    redirect_to login_path, flash: { notice: 'Please check your mail for further instructions' }
   end
 
   def reset_password
@@ -28,13 +25,9 @@ class PasswordsController < ApplicationController
     if @user.first_login
       @user.first_login = false
       @user.save
-      flash[:notice] = 'Your password has been successfully updated .'
-      redirect_to patients_path
+      redirect_to patients_path, flash: { notice: 'Your password has been successfully updated .' }
     else
-      flash[:notice] = 'Your password has been successfully updated . Please Login'
-      redirect_to login_path
+      redirect_to login_path, flash: { notice: 'Your password has been successfully updated . Please Login' }
     end
   end
 end
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength

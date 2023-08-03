@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.table-row{
+  width:16rem !important
+}
+
 .custom-button , .card {
    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);

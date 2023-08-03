@@ -31,7 +31,7 @@ image_paths.each do |image_path|
 end
 patient1.save
 patient2 = Patient.new(name: 'Lokesh Chaman', email: 'lokeshkumarchaman@gmail.com', sex: 'Male',
-                          date_of_birth: Date.new(1991, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type1.id, bed_number: 102, patient_id: 2_222_222, address: 'Kolkata', age: 33)
+                          date_of_birth: Date.new(1991, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppaeek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 2, bed_number: 102, patient_id: 2_222_222, address: 'Kolkata', age: 33)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -39,7 +39,7 @@ image_paths.each do |image_path|
 end
 patient2.save
 patient3 = Patient.new(name: 'Lokesh Kumar', email: 'lokesh.chaman@kreeti.com', sex: 'Male',
-                          date_of_birth: Date.new(1990, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type2.id, bed_number: 103, patient_id: 333_333, address: 'Jaipur', age: 25)
+                          date_of_birth: Date.new(1990, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gpareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id:2, bed_number: 103, patient_id: 333_333, address: 'Jaipur', age: 25)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -47,7 +47,7 @@ image_paths.each do |image_path|
 end
 patient3.save
 patient4 = Patient.new(name: 'Jabra Ram', email: 'jrchoudhary2410@gmail.com', sex: 'Male',
-                          date_of_birth: Date.new(1991, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type2.id, bed_number: 104, patient_id: 444_444, address: 'Jaipur', age: 25)
+                          date_of_birth: Date.new(1991, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'ppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 3, bed_number: 104, patient_id: 444_444, address: 'Jaipur', age: 25)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -55,7 +55,7 @@ image_paths.each do |image_path|
 end
 patient4.save
 patient5 = Patient.new(name: 'Azad Sing', email: 'azad@gmail.com', sex: 'Male', date_of_birth: Date.new(1999, 10, 15),phone_no:8765432312,
-                          emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type3.id, bed_number: 105, patient_id: 555_555, address: 'Kolkata', age: 23)
+                          emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gpparee22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 3, bed_number: 105, patient_id: 555_555, address: 'Kolkata', age: 23)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -63,7 +63,7 @@ image_paths.each do |image_path|
 end
 patient5.save
 patient6 = Patient.new(name: 'Madiha Mallick', email: 'mallickmadiha9031@gmail.com', sex: 'Female',
-                          date_of_birth: Date.new(1999, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type3.id, bed_number: 106, patient_id: 666_666, address: 'Kolkata', age: 23)
+                          date_of_birth: Date.new(1999, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek2@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 3, bed_number: 106, patient_id: 666_666, address: 'Kolkata', age: 23)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -71,7 +71,7 @@ image_paths.each do |image_path|
 end
 patient6.save
 patient7 = Patient.new(name: 'Shatrujeet Bera', email: 'Shatrujeet@gmail.com', sex: 'Male',
-                          date_of_birth: Date.new(1995, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type1.id, bed_number: 107, patient_id: 782_357, address: 'Jaipur', age: 21)
+                          date_of_birth: Date.new(1995, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gpparek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 1, bed_number: 107, patient_id: 782_357, address: 'Jaipur', age: 21)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -79,7 +79,7 @@ image_paths.each do |image_path|
 end
 patient7.save
 patient8 = Patient.new(name: 'Ankit Kumar', email: 'Ankit@gmail.com', sex: 'Male', date_of_birth: Date.new(1995, 10, 15),phone_no:8765432312,
-                          emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type1.id, bed_number: 108, patient_id: 667_787, address: 'Jamshedpure', age: 21)
+                          emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id:1, bed_number: 108, patient_id: 667_787, address: 'Jamshedpure', age: 21)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -87,7 +87,7 @@ image_paths.each do |image_path|
 end
 patient8.save
 patient9 = Patient.new(name: 'Mahfuz Alam', email: 'mahfuzflamedestiny@gmail.com', sex: 'Male',
-                          date_of_birth: Date.new(2000, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type2.id, bed_number: 109, patient_id: 224_353, address: 'Dhanbad', age: 22)
+                          date_of_birth: Date.new(2000, 10, 15),phone_no:8765432312, emergency_contact_person_name: 'Gourav Pareek', emergency_contact_person_email_id: 'gpeek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 1, bed_number: 109, patient_id: 224_353, address: 'Dhanbad', age: 22)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)
@@ -95,7 +95,7 @@ image_paths.each do |image_path|
 end
 patient9.save
 patient10 = Patient.new(name: 'Aftab Alam', email: 'Aftab@gmail.com', sex: 'Male', date_of_birth: Date.new(2000, 10, 15),
-                           emergency_contact_person_name: 'Gourav Pareek', phone_no:8765432312,emergency_contact_person_email_id: 'gppareek22@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: bed_type2.id, bed_number: 110, patient_id: 127_645, address: 'Dhanbad', age: 22)
+                           emergency_contact_person_name: 'Gourav Pareek', phone_no:8765432312,emergency_contact_person_email_id: 'gpparee@gmail.com', emergency_contact_person_number: '8767899809', bed_type_id: 2, bed_number: 110, patient_id: 127_645, address: 'Dhanbad', age: 22)
 image_paths = ['voter_id_1.jpeg', 'voter_id_2.jpg']
 image_paths.each do |image_path|
   path = Rails.root.join('app', 'assets', 'images', image_path)

@@ -25,7 +25,7 @@
   <h3 class="card-title">Name: <%= @patient.name %></h3>
   <p>Email: <strong><%= @patient.email %></strong></p>
   <p>Phone No: <strong><%= @patient.phone_no %></strong></p>
-  <p>Sex: <strong><%= @patient.sex %></strong></p>
+  <p>Gender: <strong><%= @patient.sex %></strong></p>
   <p>DOB: <strong><%= @patient.date_of_birth %></strong></p>
   <p>Age: <strong><%= @patient.age %></strong></p>
   <p>Patient ID: <strong><%= @patient.patient_id %></strong></p>
@@ -75,7 +75,7 @@
   </div>
  </div>
  </div>
-  <div class="buttons d-flex">
+  <div class="buttons d-flex justify-content-center">
         <div class="card text-dark m-5" style="max-width: 12rem;">
    <%= link_to 'Back', patients_path, class: 'btn btn-outline-info custom-button' %>
    

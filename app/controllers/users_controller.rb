@@ -15,11 +15,9 @@ class UsersController < ApplicationController
       user.is_locked = false
       user.failed_login_attempts = 0
       user.save
-      flash[:alert] = 'Your account has been unlocked. You can now log in.'
-      redirect_to login_path
+      redirect_to login_path, flash: { alert: 'Your account has been unlocked. You can now log in.' }
     else
-      flash[:alert] = 'Invalid unlock token.'
-      redirect_to root_path
+      redirect_to root_path, flash: { alert: 'Invalid unlock token.' }
     end
   end
 
@@ -33,8 +31,8 @@ class UsersController < ApplicationController
     @user = User.new
     return if admin?
 
-    flash[:alert] = 'Not an Admin.'
-    redirect_to users_path
+
+    redirect_to users_path, flash: { alert: 'Not an Admin.' }
   end
 
   def edit; end
@@ -56,8 +54,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = 'Account has been updated'
-      redirect_to @user
+      redirect_to @user, flash: { success: 'Account has been updated' }
     else
       render :edit
     end

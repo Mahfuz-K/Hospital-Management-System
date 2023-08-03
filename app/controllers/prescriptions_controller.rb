@@ -17,8 +17,7 @@ class PrescriptionsController < ApplicationController
     @prescription = Prescription.new
     return if admin?
 
-    flash[:alert] = 'Not an Admin.'
-    redirect_to patient_prescriptions_path
+    redirect_to patient_prescriptions_path, flash: { alert: 'Not an Admin.' }
   end
 
   def create
@@ -36,8 +35,7 @@ class PrescriptionsController < ApplicationController
   def edit
     return if admin?
 
-    flash[:alert] = 'Not an Admin.'
-    redirect_to patient_prescription_path(@patient, @prescription)
+    redirect_to patient_prescription_path(@patient, @prescription),flash: { alert: 'Not an Admin.' }
   end
 
   def update
@@ -51,11 +49,9 @@ class PrescriptionsController < ApplicationController
   def destroy
     if admin?
       @prescription.destroy
-      flash[:alert] = 'Prescription has been deleted.'
-      redirect_to patient_prescriptions_path
+      redirect_to patient_prescriptions_path, flash: { alert: 'Prescription has been deleted.' }
     else
-      flash[:alert] = 'Not an Admin.'
-      redirect_to patient_prescription_path(@patient, @prescription)
+      redirect_to patient_prescription_path(@patient, @prescription), flash: { alert: 'Not an Admin.' }
     end
   end
 

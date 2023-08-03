@@ -18,7 +18,7 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.create(invoice_params)
-   
+
     if @invoice.save
 
       redirect_to invoice_path(@invoice)
@@ -39,8 +39,7 @@ class InvoicesController < ApplicationController
 
   def destroy
     @invoice.destroy
-    redirect_to invoices_path
-    flash[:alert] = 'Invoice has been deleted'
+    redirect_to invoices_path, flash: { alert: 'Invoice has been deleted' }
   end
 
   def generate_invoice
