@@ -28,10 +28,10 @@
 
   </div>
   <br>
-  <% if  current_user==@user || (admin? && (controller_name == 'users' && action_name =='new'))  %>
+  <% if  current_user==@user  %>
   <div class="form-group">
     <%= f.label :password ,class: 'required'%>
-    <%= f.password_field :password, class: 'form-control', required: true %>
+    <%= f.password_field :password, class: 'form-control' %>
     <p class='error text-danger'><%= show_errors(@user, :password) %></p>
 
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
@@ -40,7 +40,7 @@
   <br>
   <div class="form-group">
     <%= f.label :password_confirmation, 'Confirm Password' ,class: 'required'%>
-    <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
    <%end %>
   <br>

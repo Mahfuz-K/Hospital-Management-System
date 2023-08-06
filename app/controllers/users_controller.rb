@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # this is a controller
-# rubocop:disable Metrics/MethodLength
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy unlock_users restrict_action]
   before_action :require_user, except: %i[unlock_account confirm]
@@ -30,7 +29,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     return if admin?
-
 
     redirect_to users_path, flash: { alert: 'Not an Admin.' }
   end
@@ -106,7 +104,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :role_id)
+    if admin?
+      params.require(:user).permit(:username, :email, :role_id)
+    else
+      params.require(:user).permit(:username, :email, :password, :role_id)
+
+    end
   end
 end
-# rubocop:enable Metrics/MethodLength

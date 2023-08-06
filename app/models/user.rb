@@ -4,6 +4,10 @@
 class User < ApplicationRecord
   before_create :generate_confirmation_token
   before_save { self.email = email.downcase }
+
+  has_secure_password
+  belongs_to :role
+
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false },
                        length: { minimum: 3, maximum: 25 }
@@ -12,8 +16,6 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     length: { maximum: 105 },
                     format: { with: VALID_EMAIL_REGEX }
-  has_secure_password
-  belongs_to :role
 
   attribute :failed_login_attempts, :integer, default: 0
 
