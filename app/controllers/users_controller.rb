@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     if @user.save
       StaffMailer.staff_added_email(@user).deliver_now
       StaffMailer.account_confirmation_email(@user).deliver_now
-      session[:user_id] = @user.id
+      # session[:user_id] = @user.id
       flash[:notice] = "User  #{@user.username} has been succesfully created"
       redirect_to @user
     else
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     if admin?
       @user.destroy
       session[:user_id] = nil if @user == current_user
-      flash[:notice] = 'Account and all associated articles successfully deleted'
+      flash[:alert] = 'Account and all associated articles successfully deleted'
     else
       flash[:alert] = 'Not an Admin.'
     end

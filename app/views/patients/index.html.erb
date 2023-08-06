@@ -72,17 +72,17 @@
         </tr>
       </thead>
       <tbody>
-        <% @patients.each_with_index do |patient, index| %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%=  patient.name %></td>
-            <td><%= link_to patient.patient_id, patient_path(patient) , style: 'text-decoration: none;'%></td>
-            <td><%= patient.email %></td>
-            <td><%= patient.phone_no %></td>
-            <td><%= patient.date_of_birth %></td>
-
-          </tr>
-        <% end %>
+      <% start_serial = (@patients.current_page - 1) * @patients.limit_value + 1 %>
+    <% @patients.each_with_index do |patient, index| %>
+      <tr>
+        <td><%= start_serial + index %></td>
+        <td><%= patient.name %></td>
+        <td><%= link_to patient.patient_id, patient_path(patient), style: 'text-decoration: none;' %></td>
+        <td><%= patient.email %></td>
+        <td><%= patient.phone_no %></td>
+        <td><%= patient.date_of_birth %></td>
+      </tr>
+    <% end %>
       </tbody>
     </table>
   
