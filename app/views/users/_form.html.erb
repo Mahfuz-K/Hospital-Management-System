@@ -30,7 +30,7 @@
   <br>
   <% if  current_user==@user  %>
   <div class="form-group">
-    <%= f.label :password ,class: 'required'%>
+    <%= f.label :password %>
     <%= f.password_field :password, class: 'form-control' %>
     <p class='error text-danger'><%= show_errors(@user, :password) %></p>
 
@@ -39,7 +39,7 @@
  
   <br>
   <div class="form-group">
-    <%= f.label :password_confirmation, 'Confirm Password' ,class: 'required'%>
+    <%= f.label :password_confirmation, 'Confirm Password' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
    <%end %>
