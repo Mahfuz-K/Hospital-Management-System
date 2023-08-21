@@ -17,6 +17,14 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'simplecov'
+SimpleCov.start do
+  # Exclude controllers from coverage analysis
+  add_filter '/app/controllers/'
+  # Other configurations
+end
+
+# Previous content of test helper now starts here
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -9,6 +9,7 @@ FactoryBot.define do
     sex { 'Male' }
     address { 'Kolkata' }
     age { 30 }
+    bed_number { 103 }
     date_of_birth { Date.today - 20.years }
     emergency_contact_person_name { 'Emergency Contact' }
     emergency_contact_person_number { '9876543210' }
