@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :patients do
     collection do
       get :search
+      get :filter
     end
     resources :prescriptions
     member do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :locked
+      get :confirm_account
     end
     member do
       post :unlock

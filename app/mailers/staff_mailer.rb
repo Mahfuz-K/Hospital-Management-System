@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # this is a helper
-# rubocop:disable Lint/UnusedMethodArgument
 class StaffMailer < ApplicationMailer
   def staff_added_email(staff)
-    mail(to: 'mahfuzflamedestiny@gmail.com', subject: 'Staff Added')
+    @user = staff
+    mail(to: 'mahfuzflamedestiny@gmail.com', subject: 'User  Added')
   end
 
   def account_confirmation_email(user)
@@ -24,4 +24,3 @@ class StaffMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Unlock Your Account')
   end
 end
-# rubocop:enable Lint/UnusedMethodArgument

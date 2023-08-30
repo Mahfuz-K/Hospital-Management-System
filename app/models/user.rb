@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_create :generate_confirmation_token
   before_save { self.email = email.downcase }
 
-  has_secure_password validations: false
+  has_secure_password
 
   belongs_to :role
 

@@ -8,13 +8,14 @@
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-        <% user.errors.each do |error| %>
+        <% @user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
   <div class="form-group">
+   
     <%= f.label :username ,class: 'required'%>
     <%= f.text_field :username, class: 'form-control', required: true %>
     <p class='error text-danger'><%= show_errors(@user, :username) %></p>
@@ -28,7 +29,7 @@
 
   </div>
   <br>
-  <% if  current_user==@user  %>
+ <% if current_user==@user || (admin? && controller_name == 'users' && (action_name == 'new' || action_name=='create'))%>
   <div class="form-group">
     <%= f.label :password %>
     <%= f.password_field :password, class: 'form-control' %>
@@ -42,7 +43,7 @@
     <%= f.label :password_confirmation, 'Confirm Password' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
-   <%end %>
+<%end%>
   <br>
 <div class="form-group custom-dropdown">
   <%= f.select :role_id,

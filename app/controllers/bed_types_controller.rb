@@ -33,7 +33,6 @@ class BedTypesController < ApplicationController
   def edit
     return if admin?
 
-  
     redirect_to bed_type_path(@bed_type), flash: { alert: 'Not an Admin.' }
   end
 
@@ -52,7 +51,6 @@ class BedTypesController < ApplicationController
       flash[:alert] = "Bed type #{@bed_type.name} has been deleted"
     else
       redirect_to bed_type_path(@bed_type), flash: { alert: 'Not an Admin.' }
-     
     end
   end
 

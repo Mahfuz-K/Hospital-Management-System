@@ -2,7 +2,7 @@
 
 # this is a controller
 # rubocop:disable Style/Documentation
-# rubocop:disable Metrics/AbcSize
+
 
 class PatientsController < ApplicationController
   before_action :require_user
@@ -50,17 +50,25 @@ class PatientsController < ApplicationController
 
   def search
     query = params[:search_patients].presence && params[:search_patients][:query]
-    filter_column = params[:search_patients].presence && params[:search_patients][:filter_column]
-    filter_value = params[:search_patients].presence && params[:search_patients][:filter_value]
     sort_by = params[:search_patients].presence && params[:search_patients][:sort_by]
-
     if query.blank?
       @patients = Patient.all.page(params[:page]).per(5)
     else
-      @patients = Patient.search_patients(query, filter_column, filter_value, sort_by).records
+      @patients = Patient.search_patients(query, sort_by).records
       @patients = @patients.page(params[:page]).per(5)
     end
+    session[:patient] = query.strip
+    session[:sort] = sort_by
   end
+
+  def filter
+    query = session[:patient]
+    pat = Patient.search_patients(query,session[:sort]).records
+    @patients = apply_filtering(pat, params)
+    @patients = @patients.page(params[:page]).per(5)
+    render :search
+  end
+
 
 
   private
@@ -76,4 +84,4 @@ class PatientsController < ApplicationController
   end
 end
 # rubocop:enable Style/Documentation
-# rubocop:enable Metrics/AbcSize
+

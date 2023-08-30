@@ -72,7 +72,7 @@ class Patient < ApplicationRecord
 
     }
   end
-  def self.search_patients(query, filter_column, filter_value, sort_by)
+  def self.search_patients(query,sort_by)
     search_params = {
       query: {
         bool: {
@@ -88,14 +88,6 @@ class Patient < ApplicationRecord
         }
       }
     }
-      if filter_column.present? && filter_value.present?
-      search_params[:query][:bool][:filter] << {
-        term: {
-          filter_column.to_sym => filter_value
-        }
-      }
-    end
-  
     if sort_by && !sort_by.empty?
       search_params[:sort] = {
         sort_by.to_sym => {
@@ -106,6 +98,7 @@ class Patient < ApplicationRecord
   
     search(search_params)
   end
+  
   
   index_data
 end  

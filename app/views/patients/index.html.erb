@@ -1,102 +1,102 @@
-<div class="container-fluid ">
-<% flash.each do |key, message| %>
-  <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
-    <%= message %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container-fluid">
+  <% flash.each do |key, message| %>
+    <div class="alert alert-dismissible custom-alert <%= key.to_s == 'alert' ? 'alert-danger' : 'alert-success' %>" role="alert">
+      <%= message %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <%= form_for :search_patients, url: search_patients_path, method: :get, html: { class: 'form-inline' } do |form| %>
+  <div class="form-group mb-3 ml-4 ">
+    <%= form.label :sort_by, "Sort By: ", class: "custom-label pr-3" %>
+    <%= form.select :sort_by, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Phone No", "phone_no"], ["Patient ID", "patient_id"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :sort_by) }, class: "form-control custom-select pr-5" %>
+  </div>
+
+  <div class="form-group mb-3 ml-4">
+    <%= form.label :query, "Search: ", class: "custom-label" %>
+    <div class="input-group">
+      <%= form.text_field :query, value: session[:patient], class: "form-control", placeholder: "Search by ID, Name, Contact No, or DOB" %>
+      <div class="input-group-append">
+        <%= form.submit "Search", class: "btn btn-success" %>
+      </div>
+    </div>
   </div>
 <% end %>
 
-
 <div class="d-flex justify-content-between gap-5 align-items-center w-100 flex-wrap">
-  <%= form_for :search_patients, url: search_patients_path, method: :get, html: { class: 'form-inline' } do |form| %>
-
-    <div class="form-group mb-3 ml-4">
-      <%= form.label :filter_column, "Filter By: ", class: "custom-label" %>
-      <%= form.select :filter_column, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Patient ID", "patient_id"], ["Sex", "sex"], ["Bed Type", "bed_type"], ["Emergency Admission", "emergency_admission"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :filter_column) }, class: "form-control custom-select" %>
+  <%= form_for :search_patients, url: filter_patients_path, method: :get, html: { class: 'form-inline' } do |form| %>
+    
+    <div class="form-group p-2">
+    <h2 class="mt-5 mr-3">Filter Patients</h2>
+      <%= label_tag :sex, "Gender", class: "mr-2" %>
+      <%= select_tag :sex, options_for_select([["Male", "Male"], ["Female", "Female"], ["Other", "Other"]], params[:sex]), { include_blank: "Please Select", class: "form-control" } %>
     </div>
-
-    <div class="form-group mb-3  ml-4">
-      <%= form.label :filter_value, "Filter Value: ", class: "custom-label" %>
-      <%= form.text_field :filter_value, value: params.dig(:search_patients, :filter_value), placeholder: "Filter Value", class: "form-control" %>
+    <div class="form-group p-2">
+      <%= label_tag :emergency_admission, "Emergency Admission", class: "mr-2" %>
+      <%= select_tag :emergency_admission, options_for_select([["Yes", true], ["No", false]], params[:emergency_admission]), { include_blank: "Please Select", class: "form-control" } %>
     </div>
-
-    <div class="form-group mb-3  ml-4">
-      <%= form.label :sort_by, "Sort By: ", class: "custom-label" %>
-      <%= form.select :sort_by, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Phone No", "phone_no"], ["Patient ID", "patient_id"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :sort_by) }, class: "form-control custom-select" %>
+    <div class="form-group p-2">
+      <%= label_tag :bed_type_id, "Bed Type", class: "mr-2" %>
+      <%= select_tag :bed_type_id, options_from_collection_for_select(BedType.all, :id, :name, params[:bed_type_id]), { include_blank: "Please Select", class: "form-control" } %>
     </div>
-
-    <div class="form-group mb-3  ml-4">
-      <%= form.label :query, "Search: ", class: "custom-label" %>
-      <div class="input-group">
-        <%= form.text_field :query, value: params.dig(:search_patients, :query), class: "form-control", placeholder: "Search by ID, Name, Contact No, or DOB" %>
-        <div class="input-group-append">
-          <%= form.submit "Search", class: "btn btn-success" %>
-        </div>
-      </div>
+    <div class="form-group p-2">
+      <%= submit_tag "Filter", class: "btn btn-success" %>
     </div>
   <% end %>
 </div>
 
 
+  <br>
 
-<br>
-<div class="row justify-content-md-center">
-
- <div class="create-patient-link d-flex justify-content-between align-items-center mt-5">
-  <h1 class="ml-5">Patients<h1>
- <%= button_to  new_patient_path,method: :get, class: 'btn btn-lg custom-button mr-5' ,style: 'background-color: rgb(52, 131, 172);color: azure;' do%>
-  <i class="fa-solid fa-plus"></i>
-      Create New Patient
- <%end %>
+  <div class="row justify-content-md-center">
+    <div class="create-patient-link d-flex justify-content-between align-items-center mt-5">
+      <h1 class="ml-5">Patients</h1>
+      <%= button_to new_patient_path, method: :get, class: 'btn btn-lg custom-button mr-5', style: 'background-color: rgb(52, 131, 172); color: azure;' do %>
+        <i class="fa-solid fa-plus"></i>
+        Create New Patient
+      <% end %>
     </div>
     <br>
-  
-
-
-     <div class="col-11 mt-4 ">
-     <div class="card text-dark mb-3" >
-<% unless @patients.nil? %>
-  <% if @patients.empty? %>
-    <h2>No patients found matching your query.</h2>
-  <% else %>
-
-<table class="table table-striped table-responsive" style="font-size: 18px;">
-      <thead>
-        <tr>
-          <th scope="col " class="table-row">Serial No</th>
-          <th scope="col " class="table-row">Patient Name: </th>
-          <th scope="col " class="table-row">Patient ID: </th>
-          <th scope="col " class="table-row">Email: </th>
-          <th scope="col " class="table-row">Phone No: </th>
-          <th scope="col " class="table-row">Date Of Birth: </th>
-        </tr>
-      </thead>
-      <tbody>
-      <% start_serial = (@patients.current_page - 1) * @patients.limit_value + 1 %>
-    <% @patients.each_with_index do |patient, index| %>
-      <tr>
-        <td><%= start_serial + index %></td>
-        <td><%= patient.name %></td>
-        <td><%= link_to patient.patient_id, patient_path(patient), style: 'text-decoration: none;' %></td>
-        <td><%= patient.email %></td>
-        <td><%= patient.phone_no %></td>
-        <td><%= patient.date_of_birth %></td>
-      </tr>
+<div class="col-11 mt-4">
+  <div class="card text-dark mb-3">
+    <% unless @patients.nil? %>
+      <% if @patients.empty? %>
+        <h2>No patients found matching your query.</h2>
+      <% else %>
+        <table class="table table-striped table-responsive" style="font-size: 18px;">
+          <thead>
+            <tr>
+              <th scope="col" class="table-row">Serial No</th>
+              <th scope="col" class="table-row">Patient Name:</th>
+              <th scope="col" class="table-row">Patient ID:</th>
+              <th scope="col" class="table-row">Email:</th>
+              <th scope="col" class="table-row">Phone No:</th>
+              <th scope="col" class="table-row">Date Of Birth:</th>
+            </tr>
+          </thead>
+          <tbody>
+           <% start_serial = (@patients.current_page - 1) * @patients.limit_value + 1 %>
+               <% @patients.each_with_index do |patient, index| %>
+              <tr>
+                <td><%= start_serial + index %></td>
+                <td><%= patient.name %></td>
+                <td><%= link_to patient.patient_id, patient_path(patient), style: 'text-decoration: none;' %></td>
+                <td><%= patient.email %></td>
+                <td><%= patient.phone_no %></td>
+                <td><%= patient.date_of_birth %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     <% end %>
-      </tbody>
-    </table>
-  
-
-  <% end %>
-<% end %>
+  </div>
 </div>
-</div>
-</div>
- <div class="pagination-container">
+<div class="pagination-container">
   <nav>
-    <ul class="pagination justify-content-center">
+     <ul class="pagination justify-content-center">
       <%= paginate @patients, inner_window: 2, outer_window: 1, previous_label: '&laquo; Prev', next_label: 'Next &raquo;', class: 'my-pagination' %>
     </ul>
-    
+
   </nav>
 </div>

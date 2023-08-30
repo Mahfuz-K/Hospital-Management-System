@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     if @user.save
       StaffMailer.staff_added_email(@user).deliver_now
       StaffMailer.account_confirmation_email(@user).deliver_now
-      # session[:user_id] = @user.id
+
       flash[:notice] = "User  #{@user.username} has been succesfully created"
       redirect_to @user
     else
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     if admin?
       @user.destroy
       session[:user_id] = nil if @user == current_user
-      flash[:alert] = 'Account and all associated articles successfully deleted'
+      flash[:alert] = 'Account and all associated data successfully deleted'
     else
       flash[:alert] = 'Not an Admin.'
     end
@@ -71,11 +71,15 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.find_by(confirmation_token: params[:token])
-    return unless @user
-
-    @user.confirm!
-    redirect_to confirm_user_path
+    if @user.nil?
+      redirect_to login_path, alert: 'Your account has already been confirmed. Please log in.'
+    else
+      @user.confirm!
+      redirect_to confirm_account_users_path
+    end
   end
+
+  def confirm_account; end
 
   def locked
     @users = User.all
@@ -104,11 +108,12 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    if admin?
-      params.require(:user).permit(:username, :email, :role_id)
-    else
-      params.require(:user).permit(:username, :email, :password, :role_id)
+    permitted_params = [:username, :email, :role_id]
 
+    if admin? && controller_name == 'users' && action_name == 'update'
+      return params.require(:user).permit(*permitted_params)
+    else
+      return params.require(:user).permit(*permitted_params, :password)
     end
   end
 end

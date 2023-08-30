@@ -24,6 +24,9 @@ class SessionsController < ApplicationController
       else
         redirect_to patients_path, flash: { notice: 'Logged in your account successfully' }
       end
+    elsif user&.authenticate(params[:password]) && !user&.confirmed
+      redirect_to '/login', flash: { alert: 'Please Confirm Your Account First.' }
+
     else
       failed_login(user)
     end
