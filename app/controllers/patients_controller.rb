@@ -3,8 +3,8 @@
 # this is a controller
 # rubocop:disable Style/Documentation
 
-
 class PatientsController < ApplicationController
+  include PatientHelper
   before_action :require_user
   before_action :set_patient, only: %i[show edit update destroy patient_invoice]
 
@@ -51,25 +51,21 @@ class PatientsController < ApplicationController
   def search
     query = params[:search_patients].presence && params[:search_patients][:query]
     sort_by = params[:search_patients].presence && params[:search_patients][:sort_by]
-    if query.blank?
-      @patients = Patient.all.page(params[:page]).per(5)
-    else
-      @patients = Patient.search_patients(query, sort_by).records
-      @patients = @patients.page(params[:page]).per(5)
-    end
+    @patients = query.blank? ? Patient.all : Patient.search_patients(query).records
+    @patients = sort_patient(sort_by, @patients)
+    @patients = @patients.page(params[:page]).per(5)
     session[:patient] = query.strip
     session[:sort] = sort_by
   end
 
   def filter
     query = session[:patient]
-    pat = Patient.search_patients(query,session[:sort]).records
+    pat = query.blank? ? Patient.all : Patient.search_patients(query).records
+    pat = sort_patient(session[:sort_by], pat)
     @patients = apply_filtering(pat, params)
     @patients = @patients.page(params[:page]).per(5)
     render :search
   end
-
-
 
   private
 

@@ -54,6 +54,11 @@ class Patient < ApplicationRecord
       indexes :sex, type: :text, fielddata: :true
       indexes :address, type: :text, fielddata: :true
       indexes :emergency_admission, type: :text, fielddata: :true
+      indexes :name_sort, type: :keyword
+      indexes :date_of_birth_sort, type: :date
+
+      
+      
 
 
     end
@@ -68,36 +73,37 @@ class Patient < ApplicationRecord
       phone_no: phone_no,
       sex: sex,
       address: address,
-      emergency_admission: emergency_admission
+      emergency_admission: emergency_admission,
+      name_sort: name.downcase.gsub(/\s+/, ' ').strip,
+      date_of_birth_sort: date_of_birth
 
     }
   end
-  def self.search_patients(query,sort_by)
+  
+  def self.search_patients(query)
     search_params = {
       query: {
         bool: {
-          must: [
-            {
-              multi_match: {
-                query: "*#{query}*",
-                fields: %i[name email patient_id phone_no date_of_birth sex address emergency_admission]
-              }
-            }
-          ],
+          must: [],
           filter: []
         }
       }
     }
-    if sort_by && !sort_by.empty?
-      search_params[:sort] = {
-        sort_by.to_sym => {
-          order: :asc
+  
+    if query.present?
+      search_params[:query][:bool][:must] << {
+        multi_match: {
+          query: "*#{query}*",
+          fields: %i[name patient_id email phone_no date_of_birth sex address emergency_admission]
         }
       }
     end
   
+   
+  
     search(search_params)
   end
+  
   
   
   index_data

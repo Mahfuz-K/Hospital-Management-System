@@ -43,7 +43,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_nil
+    return if %w[index search].exclude?(params[:action])
+
     session[:patient] = nil
+    session[:sort] = nil
   end
 end
 # rubocop:enable Lint/UselessAssignment

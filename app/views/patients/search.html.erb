@@ -9,7 +9,7 @@
   <%= form_for :search_patients, url: search_patients_path, method: :get, html: { class: 'form-inline' } do |form| %>
   <div class="form-group mb-3 ml-4 ">
     <%= form.label :sort_by, "Sort By: ", class: "custom-label pr-3" %>
-    <%= form.select :sort_by, [["Name", "name"], ["Email", "email"], ["Date of Birth", "date_of_birth"], ["Phone No", "phone_no"], ["Patient ID", "patient_id"]], { include_blank: "Please Select", selected: params.dig(:search_patients, :sort_by) }, class: "form-control custom-select pr-5" %>
+    <%= form.select :sort_by, [["Name A-Z", "name_asc"],["Name Z-A", "name_desc"], ["DOB asc", "date_asc"],["DOB desc", "date_desc"], ["Patient ID asc", "id_asc"],["Patient ID desc", "id_desc"]], { include_blank: "Please Select", selected: session[:sort] }, class: "form-control custom-select pr-5" %>
   </div>
 
   <div class="form-group mb-3 ml-4">
