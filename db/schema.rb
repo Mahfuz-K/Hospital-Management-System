@@ -1,4 +1,3 @@
-#rubocop:disable all
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_13_070423) do
+ActiveRecord::Schema.define(version: 2023_09_20_144748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +44,13 @@ ActiveRecord::Schema.define(version: 2023_07_13_070423) do
   end
 
   create_table "bed_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer "amount"
+    t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "payment_type_id"
@@ -61,34 +60,34 @@ ActiveRecord::Schema.define(version: 2023_07_13_070423) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "name"
-    t.string "phone_no"
-    t.string "email"
-    t.string "sex"
-    t.date "date_of_birth"
-    t.string "emergency_contact_person_name"
-    t.string "emergency_contact_person_number"
-    t.string "emergency_contact_person_email_id"
-    t.integer "patient_id"
-    t.integer "bed_number"
+    t.string "name", null: false
+    t.string "phone_no", null: false
+    t.string "email", null: false
+    t.string "sex", null: false
+    t.date "date_of_birth", null: false
+    t.string "emergency_contact_person_name", null: false
+    t.string "emergency_contact_person_number", null: false
+    t.string "emergency_contact_person_email_id", null: false
+    t.integer "patient_id", null: false
+    t.integer "bed_number", null: false
     t.boolean "emergency_admission", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "bed_type_id"
-    t.text "address"
-    t.integer "age"
+    t.bigint "bed_type_id", null: false
+    t.text "address", null: false
+    t.integer "age", null: false
     t.json "voter_id"
     t.index ["bed_type_id"], name: "index_patients_on_bed_type_id"
   end
 
   create_table "payment_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.text "description"
+    t.text "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "patient_id"
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(version: 2023_07_13_070423) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
+    t.string "username", null: false
+    t.string "email", null: false
     t.string "password_digest"
     t.boolean "is_locked", default: false
     t.datetime "created_at", precision: 6, null: false
