@@ -34,7 +34,6 @@ class PaymentTypesController < ApplicationController
   def edit
     return if admin?
 
-
     redirect_to payment_type_path(@payment_type), flash: { alert: 'Not an Admin.' }
   end
 

@@ -20,11 +20,11 @@ module InvoicesHelper
       pdf.stroke_horizontal_rule
       pdf.move_down initialmove_y
 
-      # Add the font style and size
+
       pdf.font 'Helvetica'
       pdf.font_size font_size
 
-      # Start with your school name and address
+
       pdf.text_box 'Hospital Invoice', at: [address_x, pdf.cursor], size: 16, align: :center
 
       last_measured_y = pdf.cursor

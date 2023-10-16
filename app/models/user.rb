@@ -18,7 +18,7 @@ class User < ApplicationRecord
                     length: { maximum: 105 },
                     format: { with: VALID_EMAIL_REGEX }
 
-  attribute :failed_login_attempts, :integer, default: 0
+  # attribute :failed_login_attempts, :integer, default: 0
 
   def generate_confirmation_token
     self.confirmation_token = SecureRandom.urlsafe_base64
